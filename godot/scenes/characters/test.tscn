@@ -1,0 +1,76 @@
+[gd_scene load_steps=6 format=3 uid="uid://dkydar5yxecp4"]
+
+[ext_resource type="Texture2D" uid="uid://dmelj2qgr8w7k" path="res://icon.svg" id="1_pi6vq"]
+[ext_resource type="PackedScene" uid="uid://truetsdkcs0t" path="res://scenes/characters/player.tscn" id="2_hwry8"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_a8f3i"]
+size = Vector2(192.354, 124)
+
+[sub_resource type="Gradient" id="Gradient_ubenf"]
+offsets = PackedFloat32Array(0, 0.746753)
+colors = PackedColorArray(1, 1, 1, 1, 0, 0, 0, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_awm5p"]
+gradient = SubResource("Gradient_ubenf")
+width = 256
+height = 256
+fill = 1
+fill_from = Vector2(0.5, 0.5)
+
+[node name="test" type="Node2D"]
+
+[node name="CanvasModulate" type="CanvasModulate" parent="."]
+show_behind_parent = true
+color = Color(0, 0, 0, 1)
+
+[node name="Icon" type="Sprite2D" parent="."]
+position = Vector2(387, 166)
+scale = Vector2(4.49219, 2.52344)
+texture = ExtResource("1_pi6vq")
+
+[node name="DirectionalLight2D" type="DirectionalLight2D" parent="."]
+color = Color(0.737255, 0.670588, 0.992157, 1)
+energy = 0.5
+
+[node name="Player" parent="." instance=ExtResource("2_hwry8")]
+position = Vector2(199, 121)
+
+[node name="RigidBody2D" type="StaticBody2D" parent="."]
+position = Vector2(-50, -24)
+
+[node name="Icon2" type="Sprite2D" parent="RigidBody2D"]
+position = Vector2(446.5, 342)
+scale = Vector2(7.16406, 1)
+texture = ExtResource("1_pi6vq")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="RigidBody2D"]
+position = Vector2(446.672, 342)
+scale = Vector2(4.67188, 1)
+shape = SubResource("RectangleShape2D_a8f3i")
+
+[node name="PointLight2D" type="PointLight2D" parent="."]
+position = Vector2(312, 230)
+scale = Vector2(0.868652, 0.75)
+color = Color(0, 0.631373, 0.196078, 1)
+energy = 1.95
+texture = SubResource("GradientTexture2D_awm5p")
+
+[node name="PointLight2D2" type="PointLight2D" parent="."]
+position = Vector2(90.125, 204.5)
+scale = Vector2(0.538086, 0.503906)
+color = Color(0.741176, 0.596078, 0.254902, 0.92549)
+energy = 1.91
+texture = SubResource("GradientTexture2D_awm5p")
+
+[node name="PointLight2D3" type="PointLight2D" parent="."]
+position = Vector2(728, 238)
+scale = Vector2(0.858398, 0.65625)
+color = Color(0.439216, 0, 0.109804, 1)
+energy = 2.31
+texture = SubResource("GradientTexture2D_awm5p")
+
+[node name="PointLight2D4" type="PointLight2D" parent="."]
+position = Vector2(543.625, 226)
+scale = Vector2(0.495117, 0.492188)
+color = Color(0.937255, 0.431373, 0.509804, 0.92549)
+texture = SubResource("GradientTexture2D_awm5p")

@@ -13,20 +13,26 @@ config_version=5
 config/name="MyGame"
 run/main_scene="res://scenes/boot/godot/godot_bootsplash_scene.tscn"
 config/features=PackedStringArray("4.2")
+run/max_fps=60
 config/icon="res://icon.svg"
 
 [autoload]
 
 UserSettings="*res://settings/user_settings.gd"
+PhantomCameraManager="*res://addons/phantom_camera/scripts/managers/phantom_camera_manager.gd"
 
 [display]
 
-window/size/viewport_width=576
-window/size/viewport_height=324
+window/size/viewport_width=480
+window/size/viewport_height=270
 window/size/window_width_override=1920
 window/size/window_height_override=1080
 window/stretch/mode="canvas_items"
 window/stretch/aspect="keep_height"
+
+[editor_plugins]
+
+enabled=PackedStringArray("res://addons/phantom_camera/plugin.cfg")
 
 [gui]
 

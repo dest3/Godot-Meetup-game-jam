@@ -1,0 +1,39 @@
+[gd_scene load_steps=6 format=3 uid="uid://truetsdkcs0t"]
+
+[ext_resource type="Script" path="res://scenes/characters/player.gd" id="1_iq64t"]
+[ext_resource type="Texture2D" uid="uid://0pc76tvd1gwr" path="res://assets/Placeholder/2 personaje.png" id="2_y0r3p"]
+[ext_resource type="Script" path="res://addons/phantom_camera/scripts/phantom_camera_host/phantom_camera_host.gd" id="3_0mktv"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_pcvtv"]
+size = Vector2(20, 62)
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_j4xeq"]
+radius = 90.0
+
+[node name="Player" type="CharacterBody2D"]
+scale = Vector2(0.5, 0.5)
+script = ExtResource("1_iq64t")
+
+[node name="Icon" type="Sprite2D" parent="."]
+texture_filter = 1
+texture = ExtResource("2_y0r3p")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+texture_filter = 1
+position = Vector2(0, 1)
+shape = SubResource("RectangleShape2D_pcvtv")
+
+[node name="Camera2D" type="Camera2D" parent="."]
+limit_left = -1
+limit_bottom = 273
+editor_draw_limits = true
+
+[node name="PhantomCameraHost" type="Node" parent="Camera2D"]
+process_priority = 300
+process_physics_priority = 300
+script = ExtResource("3_0mktv")
+
+[node name="Area2D" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+shape = SubResource("CircleShape2D_j4xeq")

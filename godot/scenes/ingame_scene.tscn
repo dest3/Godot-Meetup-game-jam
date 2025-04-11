@@ -1,17 +1,102 @@
-[gd_scene load_steps=6 format=3 uid="uid://cik30de5gaaah"]
+[gd_scene load_steps=22 format=3 uid="uid://cik30de5gaaah"]
 
 [ext_resource type="Script" path="res://scenes/ingame_scene.gd" id="1_objyc"]
 [ext_resource type="PackedScene" uid="uid://bkk87o2ooo6at" path="res://ui/overlays/fade_overlay.tscn" id="1_y6ebv"]
-[ext_resource type="Texture2D" uid="uid://dmelj2qgr8w7k" path="res://icon.svg" id="2_h1yxu"]
+[ext_resource type="Texture2D" uid="uid://dxfa3x5d6gpgo" path="res://assets/Placeholder/8 fondo.png" id="2_ijq50"]
+[ext_resource type="Texture2D" uid="uid://dshsejxgenn66" path="res://assets/Placeholder/6 nubes .png" id="3_1m57b"]
 [ext_resource type="PackedScene" uid="uid://jyv4g54adkmo" path="res://ui/overlays/pause_overlay.tscn" id="3_8o178"]
-[ext_resource type="Script" path="res://scenes/node_example.gd" id="3_a5686"]
+[ext_resource type="Script" path="res://scripts/ParallaxLayer2.gd" id="3_sou1y"]
+[ext_resource type="Texture2D" uid="uid://1swfilbhli4b" path="res://assets/Placeholder/5 lomitas.png" id="4_1t4g1"]
+[ext_resource type="PackedScene" uid="uid://truetsdkcs0t" path="res://scenes/characters/player.tscn" id="4_sk8nf"]
+[ext_resource type="Texture2D" uid="uid://c0upljvg7mmtb" path="res://assets/Placeholder/4 lomitas.png" id="5_p1xp5"]
+[ext_resource type="Texture2D" uid="uid://dt3iuo5o7u8jp" path="res://assets/Placeholder/3 piso .png" id="6_8rfpg"]
+[ext_resource type="Script" path="res://scripts/camera_manager.gd" id="6_jhjul"]
+[ext_resource type="Script" path="res://addons/phantom_camera/scripts/phantom_camera/phantom_camera_2d.gd" id="7_2f7r3"]
+[ext_resource type="Script" path="res://addons/phantom_camera/scripts/resources/tween_resource.gd" id="8_ovcuh"]
+[ext_resource type="Texture2D" uid="uid://b338x4nlsmile" path="res://assets/Placeholder/1 piedras .png" id="13_vskn5"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_jbs44"]
+size = Vector2(2515.5, 20)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_cg25s"]
+size = Vector2(661, 19)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_uyota"]
+size = Vector2(21, 448.5)
+
+[sub_resource type="Resource" id="Resource_a2ndd"]
+script = ExtResource("8_ovcuh")
+duration = 0.5
+transition = 0
+ease = 2
+
+[sub_resource type="Resource" id="Resource_labw3"]
+script = ExtResource("8_ovcuh")
+duration = 0.5
+transition = 0
+ease = 2
+
+[sub_resource type="Resource" id="Resource_tihpl"]
+script = ExtResource("8_ovcuh")
+duration = 0.5
+transition = 0
+ease = 2
+
+[sub_resource type="Resource" id="Resource_p2g13"]
+script = ExtResource("8_ovcuh")
+duration = 1.0
+transition = 0
+ease = 2
 
 [node name="IngameScene" type="Node2D"]
 script = ExtResource("1_objyc")
 
-[node name="NodeExample" type="Sprite2D" parent="." groups=["Persist"]]
-texture = ExtResource("2_h1yxu")
-script = ExtResource("3_a5686")
+[node name="ParallaxBackground" type="ParallaxBackground" parent="."]
+
+[node name="ParallaxLayer" type="ParallaxLayer" parent="ParallaxBackground"]
+position = Vector2(481, 138)
+motion_scale = Vector2(0, 0)
+motion_mirroring = Vector2(960, 0)
+
+[node name="Sprite2D" type="Sprite2D" parent="ParallaxBackground/ParallaxLayer"]
+texture = ExtResource("2_ijq50")
+
+[node name="ParallaxLayer2" type="ParallaxLayer" parent="ParallaxBackground"]
+position = Vector2(481, 138)
+motion_scale = Vector2(0, 0)
+motion_mirroring = Vector2(960, 0)
+script = ExtResource("3_sou1y")
+
+[node name="Sprite2D" type="Sprite2D" parent="ParallaxBackground/ParallaxLayer2"]
+texture = ExtResource("3_1m57b")
+
+[node name="ParallaxLayer3" type="ParallaxLayer" parent="ParallaxBackground"]
+position = Vector2(481, 138)
+motion_scale = Vector2(0.3, 0)
+motion_mirroring = Vector2(960, 0)
+
+[node name="Sprite2D" type="Sprite2D" parent="ParallaxBackground/ParallaxLayer3"]
+texture = ExtResource("4_1t4g1")
+
+[node name="ParallaxLayer4" type="ParallaxLayer" parent="ParallaxBackground"]
+position = Vector2(481, 138)
+motion_scale = Vector2(0.1, 0)
+motion_mirroring = Vector2(960, 0)
+
+[node name="Sprite2D" type="Sprite2D" parent="ParallaxBackground/ParallaxLayer4"]
+texture = ExtResource("5_p1xp5")
+
+[node name="ParallaxLayer5" type="ParallaxLayer" parent="ParallaxBackground"]
+position = Vector2(481, 138)
+motion_scale = Vector2(1, 0)
+motion_mirroring = Vector2(960, 0)
+
+[node name="Sprite2D" type="Sprite2D" parent="ParallaxBackground/ParallaxLayer5"]
+texture = ExtResource("6_8rfpg")
+
+[node name="CanvasModulate" type="CanvasModulate" parent="ParallaxBackground"]
+show_behind_parent = true
+color = Color(0, 0, 0, 1)
 
 [node name="UI" type="CanvasLayer" parent="."]
 
@@ -23,3 +108,112 @@ visible = false
 unique_name_in_owner = true
 process_mode = 2
 visible = false
+
+[node name="Player" parent="." instance=ExtResource("4_sk8nf")]
+position = Vector2(144, 128)
+
+[node name="colisiones" type="Node" parent="."]
+
+[node name="StaticBody2D" type="StaticBody2D" parent="colisiones"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="colisiones/StaticBody2D"]
+position = Vector2(1248.25, 268)
+shape = SubResource("RectangleShape2D_jbs44")
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="colisiones/StaticBody2D"]
+position = Vector2(-6, 69)
+rotation = 1.5708
+shape = SubResource("RectangleShape2D_cg25s")
+
+[node name="camera_manager" type="Node" parent="." node_paths=PackedStringArray("player", "camera_zone0", "camera_zone1", "camera_zone2", "camera_zone3")]
+script = ExtResource("6_jhjul")
+player = NodePath("../Player")
+camera_zone0 = NodePath("Zona0-1/PhantomCamera2D")
+camera_zone1 = NodePath("Zona1-2/PhantomCamera2D")
+camera_zone2 = NodePath("Zona2-3/PhantomCamera2D")
+camera_zone3 = NodePath("Zona3-4/PhantomCamera2D")
+
+[node name="Zona0-1" type="Area2D" parent="camera_manager"]
+position = Vector2(78, -5)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="camera_manager/Zona0-1"]
+position = Vector2(731, 53)
+shape = SubResource("RectangleShape2D_uyota")
+
+[node name="PhantomCamera2D" type="Node2D" parent="camera_manager/Zona0-1" node_paths=PackedStringArray("follow_target")]
+top_level = true
+position = Vector2(239, 128)
+script = ExtResource("7_2f7r3")
+follow_mode = 1
+follow_target = NodePath("../../../Player")
+tween_resource = SubResource("Resource_a2ndd")
+follow_damping = true
+follow_damping_value = Vector2(0.5, 0.1)
+draw_limits = true
+limit_left = -1
+limit_bottom = 273
+
+[node name="Zona1-2" type="Area2D" parent="camera_manager"]
+position = Vector2(471, 5)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="camera_manager/Zona1-2"]
+position = Vector2(784, 38)
+shape = SubResource("RectangleShape2D_uyota")
+
+[node name="PhantomCamera2D" type="Node2D" parent="camera_manager/Zona1-2"]
+position = Vector2(759, 98)
+script = ExtResource("7_2f7r3")
+zoom = Vector2(0.6, 1)
+tween_resource = SubResource("Resource_labw3")
+draw_limits = true
+limit_bottom = 273
+
+[node name="Zona2-3" type="Area2D" parent="camera_manager"]
+position = Vector2(1029, 0)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="camera_manager/Zona2-3"]
+position = Vector2(723, 47)
+shape = SubResource("RectangleShape2D_uyota")
+
+[node name="PhantomCamera2D" type="Node2D" parent="camera_manager/Zona2-3"]
+position = Vector2(484, 138)
+script = ExtResource("7_2f7r3")
+tween_resource = SubResource("Resource_tihpl")
+draw_limits = true
+limit_bottom = 273
+
+[node name="Zona3-4" type="Area2D" parent="camera_manager"]
+position = Vector2(1442, -2)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="camera_manager/Zona3-4"]
+position = Vector2(571, 42)
+shape = SubResource("RectangleShape2D_uyota")
+
+[node name="PhantomCamera2D" type="Node2D" parent="camera_manager/Zona3-4"]
+position = Vector2(545, 118)
+script = ExtResource("7_2f7r3")
+tween_resource = SubResource("Resource_p2g13")
+draw_limits = true
+limit_bottom = 273
+
+[node name="ParallaxBackground2" type="ParallaxBackground" parent="."]
+layer = 10
+scroll_ignore_camera_zoom = true
+
+[node name="ParallaxLayer6" type="ParallaxLayer" parent="ParallaxBackground2"]
+position = Vector2(481, 138)
+motion_scale = Vector2(1, 0)
+motion_mirroring = Vector2(960, 0)
+
+[node name="Sprite2D" type="Sprite2D" parent="ParallaxBackground2/ParallaxLayer6"]
+position = Vector2(-16, -4)
+texture = ExtResource("13_vskn5")
+
+[node name="DirectionalLight2D" type="DirectionalLight2D" parent="."]
+color = Color(0.972549, 0.976471, 1, 1)
+energy = 0.5
+
+[connection signal="body_entered" from="camera_manager/Zona0-1" to="camera_manager" method="_on_zona_01_body_entered"]
+[connection signal="body_entered" from="camera_manager/Zona1-2" to="camera_manager" method="_on_zona_12_body_entered"]
+[connection signal="body_entered" from="camera_manager/Zona2-3" to="camera_manager" method="_on_zona_23_body_entered"]
+[connection signal="body_entered" from="camera_manager/Zona3-4" to="camera_manager" method="_on_zona_34_body_entered"]
